@@ -1,9 +1,10 @@
 //
-//  StackView.swift
-//  StoryPromptwithoutStoryboard
+//  ContainerView.swift
+//  StoryPromptF
 //
-//  Created by Arya Vashisht on 10/02/22.
+//  Created by Arya Vashisht on 16/02/22.
 //
+
 
 import Foundation
 import UIKit
@@ -11,7 +12,15 @@ import UIKit
 
 class ContainerView: UIView{
     
+    
+    let nounlabel = UILabel()
+    let nountextView = UITextField()
 
+    let adjectivelabel = UILabel()
+    let adjectivetextView = UITextField()
+    
+    let verblabel = UILabel()
+    let verbtextView = UITextField()
     
     lazy var stackView: UIStackView = {
         
@@ -29,11 +38,10 @@ class ContainerView: UIView{
     
     lazy var nounstackView: UIStackView = {
         
-        
-        let nounlabel = UILabel()
-        let nountextView = UITextField()
+
         
         let nounstackview = UIStackView()
+        
         nounstackview.translatesAutoresizingMaskIntoConstraints = false
         nounstackview.axis = .horizontal
         nounstackview.distribution = .fillProportionally
@@ -46,6 +54,7 @@ class ContainerView: UIView{
         
         nountextView.translatesAutoresizingMaskIntoConstraints = false
         nountextView.backgroundColor = .white
+       
         
         
         nounstackview.addArrangedSubview(nounlabel)
@@ -60,8 +69,7 @@ class ContainerView: UIView{
     lazy var adjectivestackView: UIStackView = {
         
         let adjectivestackview = UIStackView()
-        let adjectivelabel = UILabel()
-        let adjectivetextView = UITextField()
+   
         
         adjectivestackview.translatesAutoresizingMaskIntoConstraints = false
         adjectivestackview.axis = .horizontal
@@ -89,8 +97,7 @@ class ContainerView: UIView{
     lazy var verbstackView: UIStackView = {
         
         let verbstackview = UIStackView()
-        let verblabel = UILabel()
-        let verbtextView = UITextField()
+     
         
         verbstackview.translatesAutoresizingMaskIntoConstraints = false
         verbstackview.axis = .horizontal
@@ -168,12 +175,12 @@ class ContainerView: UIView{
        
         imageview.frame = CGRect(x: 0, y: 0, width: width, height: height )
         
+        imageview.isUserInteractionEnabled = true
         
-
         return imageview
     }()
     
-    
+  
     //
     
     lazy var storyLabel: UILabel = {
@@ -197,6 +204,9 @@ class ContainerView: UIView{
         super.init(frame: frame)
         style()
         layout()
+        
+        
+      
     }
     
     required init?(coder: NSCoder) {
@@ -205,10 +215,12 @@ class ContainerView: UIView{
     
 }
 
+
 extension ContainerView {
     private func style() {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
     private func layout() {
@@ -250,4 +262,28 @@ extension ContainerView {
         storyGenre.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
     }
+}
+
+extension ContainerView: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nountextView.endEditing(true)
+        adjectivetextView.endEditing(true)
+        verbtextView.endEditing(true)
+        
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+      return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
+    
+}
+
+
+extension ContainerView: PHPickerViewControllerDelegate{
+    
 }

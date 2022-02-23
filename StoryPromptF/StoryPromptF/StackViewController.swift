@@ -1,9 +1,10 @@
 //
 //  ViewController.swift
-//  StoryPromptwithoutStoryboard
+//  StoryPromptF
 //
-//  Created by Arya Vashisht on 09/02/22.
+//  Created by Arya Vashisht on 16/02/22.
 //
+
 
 import UIKit
 
@@ -39,4 +40,5 @@ extension StackViewController{
         ])
     }
 }
+
 
